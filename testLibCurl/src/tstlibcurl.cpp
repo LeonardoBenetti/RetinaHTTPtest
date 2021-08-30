@@ -74,19 +74,18 @@ int main(int argc, char *argv[ ])
 
             static bool status = false;
 
-            static string datetime = "agora";
-            static double latitude = 1.0;
-            static double longitude = 2.0;
-            static double speed = 3.0;
-            static double trackAngle = 4.0;
-            static double temperature = 5.0;
+            string datetime = "agora";
+            double latitude = 1.0;
+            double longitude = 2.0;
+            double speed = 3.0;
+            double trackAngle = 4.0;
+            double temperature = 5.0;
 
-            static const char *dat = datetime.c_str();
-            static const char *lat = to_string(latitude).c_str();
-            static const char *lon = to_string(longitude).c_str();
-            static const char *spd = to_string(speed).c_str();
-            static const char *tckA = to_string(trackAngle).c_str();
-            static const char *temp = to_string(temperature).c_str();
+            string lat = to_string(latitude);
+            string lon = to_string(longitude);
+            string spd = to_string(speed);
+            string tckA = to_string(trackAngle);
+            string temp = to_string(temperature);
 
             // get a curl handle
             curl = curl_easy_init();
@@ -106,27 +105,27 @@ int main(int argc, char *argv[ ])
 
                 part = curl_mime_addpart(mime);
                 curl_mime_name(part, "Datetime");
-                curl_mime_data(part, dat, CURL_ZERO_TERMINATED);
+                curl_mime_data(part, datetime.c_str(), CURL_ZERO_TERMINATED);
 
                 part = curl_mime_addpart(mime);
                 curl_mime_name(part, "Latitude");
-                curl_mime_data(part, lat, CURL_ZERO_TERMINATED);
+                curl_mime_data(part, lat.c_str(), CURL_ZERO_TERMINATED);
 
                 part = curl_mime_addpart(mime);
                 curl_mime_name(part, "Longitude");
-                curl_mime_data(part, lon, CURL_ZERO_TERMINATED);
+                curl_mime_data(part, lon.c_str(), CURL_ZERO_TERMINATED);
 
                 part = curl_mime_addpart(mime);
                 curl_mime_name(part, "Speed");
-                curl_mime_data(part, spd, CURL_ZERO_TERMINATED);
+                curl_mime_data(part, spd.c_str(), CURL_ZERO_TERMINATED);
 
                 part = curl_mime_addpart(mime);
                 curl_mime_name(part, "TrackAngle");
-                curl_mime_data(part, tckA, CURL_ZERO_TERMINATED);
+                curl_mime_data(part, tckA.c_str(), CURL_ZERO_TERMINATED);
 
                 part = curl_mime_addpart(mime);
                 curl_mime_name(part, "Temperature");
-                curl_mime_data(part, temp, CURL_ZERO_TERMINATED);
+                curl_mime_data(part, temp.c_str(), CURL_ZERO_TERMINATED);
 
                 part = curl_mime_addpart(mime);
                 curl_mime_name(part, "Image");
